@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="AddTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="68"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="67.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus" translatesAutoresizingMaskIntoConstraints="NO" id="bYM-dv-HAm">
+                        <rect key="frame" x="280" y="22" width="24" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="24" id="4Ig-9G-SvU"/>
+                            <constraint firstAttribute="height" constant="24" id="FDW-Cz-bL0"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="添加评论" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s5a-4R-ufw">
+                        <rect key="frame" x="16" y="23" width="68" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="bYM-dv-HAm" secondAttribute="bottom" constant="8" id="2Fq-Qj-s5j"/>
+                    <constraint firstItem="bYM-dv-HAm" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="7F6-rT-be2"/>
+                    <constraint firstItem="s5a-4R-ufw" firstAttribute="centerY" secondItem="bYM-dv-HAm" secondAttribute="centerY" id="JNe-Bc-eWI"/>
+                    <constraint firstItem="bYM-dv-HAm" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="16" id="OHH-88-03l"/>
+                    <constraint firstItem="bYM-dv-HAm" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="jQO-ff-ylO"/>
+                    <constraint firstAttribute="trailing" secondItem="bYM-dv-HAm" secondAttribute="trailing" constant="16" id="l50-DV-9Sk"/>
+                    <constraint firstItem="s5a-4R-ufw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="tlY-Hq-7eZ"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="2Fq-Qj-s5j"/>
+                        <exclude reference="OHH-88-03l"/>
+                        <exclude reference="jQO-ff-ylO"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="plus" width="200" height="200"/>
+    </resources>
+</document>
