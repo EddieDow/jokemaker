@@ -118,7 +118,7 @@
     self.navigationItem.titleView = customLab;
 
     UIButton *morebutton = [UIButton buttonWithType:UIButtonTypeCustom];
-    morebutton.frame = CGRectMake(0, 5,25, 25);
+    morebutton.frame = CGRectMake(0, 5,28, 28);
     [morebutton setBackgroundImage:[UIImage imageNamed:@"icon_more.png"] forState:UIControlStateNormal];
     [morebutton addTarget:self action:@selector(moreAction) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:morebutton];
