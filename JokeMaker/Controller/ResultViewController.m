@@ -23,6 +23,7 @@
 #import "JTSImageViewController.h"
 #import "LPScrollFullScreen.h"
 #import "UIColor+Help.h"
+#import "FFToast.h"
 
 #define UserNickFont [UIFont boldSystemFontOfSize:18]
 #define TitleLabelFont [UIFont systemFontOfSize:13]
@@ -456,7 +457,7 @@
                                   delegate:self
                                   cancelButtonTitle:@"取消"
                                   destructiveButtonTitle:nil
-                                  otherButtonTitles:@"分享",@"保存图片",nil];
+                                  otherButtonTitles:@"分享",@"保存图片", @"保存作品", nil];
     actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
     [actionSheet showInView:self.view];
 }
@@ -476,9 +477,17 @@
                            animated:YES completion:nil];
     } else if (buttonIndex == 1) {
         [self saveImage];
+    } else if (buttonIndex == 2) {
+        [self saveMoments];
     }
 }
 
+//Move to a special class
+-(void) saveMoments {
+    Moments *mom = AppUtils.getMom;
+    [AppUtils saveIntoPresistentLayer:mom];
+    [FFToast showToastWithTitle:@"提示" message:@"作品已经保存成功，请勿成功保存." iconImage:[UIImage imageNamed:@"fftoast_success_highlight.png"] duration:4000 toastType:FFToastTypeDefault];
+}
 
 -(void) saveImage {
     isSaved = true;

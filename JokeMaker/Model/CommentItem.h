@@ -11,12 +11,8 @@
 @interface CommentItem : NSObject
 
 @property (nonatomic, assign) NSInteger indexId;
-
 @property (nonatomic, strong) NSString *userNick;
-
-
 @property (nonatomic, strong) NSString *replyUserNick;
-
 @property (nonatomic, strong) NSString *comment;
 
 @end

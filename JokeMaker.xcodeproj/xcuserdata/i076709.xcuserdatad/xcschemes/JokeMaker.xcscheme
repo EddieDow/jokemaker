@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C4C62CFC1DDD1ABE0084C42D"
-               BuildableName = "&#x6bb5;&#x5b50;&#x624b;&#x795e;&#x5668;.app"
-               BlueprintName = "&#x6bb5;&#x5b50;&#x624b;&#x795e;&#x5668;"
+               BuildableName = "jokermaker.app"
+               BlueprintName = "jokermaker"
                ReferencedContainer = "container:JokeMaker.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,8 +33,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C4C62CFC1DDD1ABE0084C42D"
-            BuildableName = "&#x6bb5;&#x5b50;&#x624b;&#x795e;&#x5668;.app"
-            BlueprintName = "&#x6bb5;&#x5b50;&#x624b;&#x795e;&#x5668;"
+            BuildableName = "jokermaker.app"
+            BlueprintName = "jokermaker"
             ReferencedContainer = "container:JokeMaker.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -56,8 +56,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C4C62CFC1DDD1ABE0084C42D"
-            BuildableName = "&#x6bb5;&#x5b50;&#x624b;&#x795e;&#x5668;.app"
-            BlueprintName = "&#x6bb5;&#x5b50;&#x624b;&#x795e;&#x5668;"
+            BuildableName = "jokermaker.app"
+            BlueprintName = "jokermaker"
             ReferencedContainer = "container:JokeMaker.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -75,8 +75,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C4C62CFC1DDD1ABE0084C42D"
-            BuildableName = "&#x6bb5;&#x5b50;&#x624b;&#x795e;&#x5668;.app"
-            BlueprintName = "&#x6bb5;&#x5b50;&#x624b;&#x795e;&#x5668;"
+            BuildableName = "jokermaker.app"
+            BlueprintName = "jokermaker"
             ReferencedContainer = "container:JokeMaker.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

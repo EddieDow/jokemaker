@@ -35,4 +35,6 @@
 
 +(UIImage *)getImage:(ALAsset *)asset isFullImage:(BOOL)fullImage;
 
++(void) saveIntoPresistentLayer: (Moments *)moment;
+
 @end

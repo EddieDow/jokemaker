@@ -220,11 +220,7 @@
         vc.delegate = self;
         [self.navigationController pushViewController:vc animated:true];
     }
-
-
 }
-
-
 
 - (void)launchGMImagePicker
 {
@@ -233,9 +229,6 @@
     imagePicker.maxSelected = 1;
     [self presentViewController:imagePicker animated:YES completion:nil];
 }
-
-
-
 
 
 #pragma mark - DNImagePickerControllerDelegate

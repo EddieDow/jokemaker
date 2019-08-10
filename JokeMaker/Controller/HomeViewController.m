@@ -12,6 +12,7 @@
 #import "Moments.h"
 #import "UIColor+Help.h"
 #import "AutoSlideScrollView.h"
+#import "jokermaker-Swift.h"
 
 
 static const NSInteger kTotalPageCount = 2;
@@ -69,11 +70,23 @@ static const NSInteger kTotalPageCount = 2;
     [self.view addSubview:self.mainScorllView];
 
     [self creatSuspendBtn];
+    
+    //sample reels
+    UIButton *morebutton = [UIButton buttonWithType:UIButtonTypeCustom];
+    morebutton.frame = CGRectMake(0, 5,28, 28);
+    [morebutton setTitle:@"作品集" forState: UIControlStateNormal];
+    [morebutton setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
+    morebutton.titleLabel.font = [UIFont systemFontOfSize: 15.0];
+    [morebutton addTarget:self action:@selector(openSamplesPage) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:morebutton];
 }
 
+-(void)openSamplesPage {
+    RecordsViewController *recordsVC = [[RecordsViewController alloc] init];
+    [self.navigationController pushViewController:recordsVC animated:true];
+}
 
-
--(void)creatSuspendBtn{
+-(void)creatSuspendBtn {
     _button = [APRoundedButton buttonWithType:UIButtonTypeCustom];
 
     _button.frame = CGRectMake(0,0, 180, 45);

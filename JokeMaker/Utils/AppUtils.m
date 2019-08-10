@@ -7,6 +7,8 @@
 //
 
 #import "AppUtils.h"
+#import "AppConstants.h"
+#import "FileSave.h"
 
 static Moments *moment = nil;
 
@@ -19,6 +21,67 @@ static Moments *moment = nil;
     return moment;
 }
 
++ (void) saveIntoPresistentLayer: (Moments *)saveMoment {
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+
+    //get total count
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSInteger count = [defaults integerForKey: kMomentCount];
+    if (count == nil) {
+        count = 0;
+    }
+    
+    //prepare object for next item + 1
+    count = count + 1;
+    NSString *contentKey = [[NSString alloc] initWithFormat:@"%@_%d", kMomentPrefix, count];
+    
+    //Avatar key
+    NSString *avatarImageName = [[NSString alloc] initWithFormat:@"%@_avatar.png", contentKey];
+    [dic setValue:avatarImageName forKey:@"avatar"];
+    [FileSave saveDataToDocumentsDirectory:UIImagePNGRepresentation(saveMoment.avatar) withName:avatarImageName andSubDirectory: kMomentCachedImagePath];
+
+    //TODO: save avatar image
+    
+    [dic setValue:saveMoment.userName forKey:@"userName"];
+    [dic setValue:saveMoment.content forKey:@"content"];
+    [dic setValue:saveMoment.location forKey:@"location"];
+    [dic setValue:saveMoment.time forKey:@"time"];
+    [dic setValue:saveMoment.likes forKey:@"likes"];
+    
+    NSMutableArray *comments = [[NSMutableArray alloc] init];
+    for (CommentItem* comment in saveMoment.comments) {
+        NSDictionary *dicComment = [[NSDictionary alloc] init];
+        [dicComment setValue:comment.userNick forKey:@"userNick"];
+        [dicComment setValue:comment.replyUserNick forKey:@"replyUserNick"];
+        [dicComment setValue:comment.comment forKey:@"comment"];
+        [comments addObject:dicComment];
+    }
+    [dic setValue:comments forKey:@"comment"];
+    
+    NSMutableArray *images = [[NSMutableArray alloc] init];
+    for (int i = 0; i < images.count; i++) {
+        NSString *imageName = [[NSString alloc] initWithFormat:@"%@_%davatar.png", contentKey,i];
+        [images addObject:imageName];
+        [FileSave saveDataToDocumentsDirectory:UIImagePNGRepresentation(saveMoment.arrImage[i]) withName:imageName andSubDirectory: kMomentCachedImagePath];
+    }
+    [dic setValue:images forKey:@"arrImage"];
+    
+    //Set cached index
+     NSMutableArray *indexs = [defaults objectForKey: kMomentIndex];
+    if (indexs == nil) {
+        indexs = [[NSMutableArray alloc] init];
+    }
+    NSMutableArray *mutableCopyArray = [indexs mutableCopy];
+    [mutableCopyArray addObject:contentKey];
+    
+    [defaults setObject:mutableCopyArray forKey:kMomentIndex];
+    [defaults setObject:dic forKey:contentKey];
+    [defaults setInteger:count forKey:kMomentCount];
+    [defaults synchronize];
+//
+//    //reset for testing
+//    [defaults setInteger:0 forKey:kMomentCount];
+}
 
 
 + (NSInteger) appId{

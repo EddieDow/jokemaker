@@ -193,3 +193,9 @@
 #define UmengWXSession @"wxsession"
 #define UmengQzone @"qzone"
 #define UmengQQ @"qq"
+
+
+#define kMomentCount                            @"total_count"
+#define kMomentIndex                            @"moment_index"
+#define kMomentPrefix                           @"moment_content"
+#define kMomentCachedImagePath                  @"cached_image"
