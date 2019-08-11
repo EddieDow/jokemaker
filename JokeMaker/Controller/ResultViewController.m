@@ -8,7 +8,6 @@
 
 #import "ResultViewController.h"
 
-
 #import "HomeViewController.h"
 #import "AppUtils.h"
 #import "MLLinkLabel.h"
@@ -75,21 +74,13 @@
 }
 
 @property (nonatomic, strong) UIImageView *userAvatarView;
-
 @property (nonatomic, strong) MLLinkLabel *userNickLabel;
-
 @property (nonatomic, strong) UIView *bodyView;
-
 @property (strong, nonatomic) MLLinkLabel *textContentLabel;
-
 @property (nonatomic, strong) UILabel *locationLabel;
-
 @property (nonatomic, strong) UILabel *timeLabel;
-
 @property (nonatomic, strong) UIButton *likeCmtButton;
-
 @property (nonatomic, strong) LikeCommentView *likeCommentView;
-
 @property (strong, nonatomic) GridImageView *gridImageView;
 
 
@@ -124,19 +115,13 @@
     [morebutton addTarget:self action:@selector(moreAction) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:morebutton];
 
-
     mainView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, screenWidth, [self getHeight:moment])];
     mainView.backgroundColor = [UIColor whiteColor];
- //   [self.view addSubview:mainView];
 
     [self setContent];
 
-//    [self takeScreenshot];
-
     [self performSelector:@selector(takeScreenshot) withObject:nil afterDelay:0.5];
-    [self performSelector:@selector(creatSuspendBtn) withObject:nil afterDelay:1.0];
-
-
+    [self performSelector:@selector(creatSuspendBtn) withObject:nil afterDelay:1.5];
 }
 
 - (void)someBigImage:(UIImageView *)imageView {
@@ -173,7 +158,7 @@
 }
 
 -(void) setContent {
-    CGFloat x = 0.0, y, width, height;
+    CGFloat x = 0.0, y, width, height = 0.0;
     y = 5.0;
     if (_userAvatarView == nil ) {
 
@@ -231,7 +216,6 @@
     }
 
     if (_gridImageView == nil) {
-
         CGFloat x, y , width, height;
 
         x = 0;
@@ -243,7 +227,6 @@
         [self.bodyView addSubview:_gridImageView];
     }
 
-
     if (_locationLabel == nil) {
         _locationLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _locationLabel.textColor = [UIColor colorWithRed:35/255.0 green:83/255.0 blue:120/255.0 alpha:1.0];
@@ -252,8 +235,6 @@
         [mainView addSubview:_locationLabel];
     }
 
-
-
     if (_timeLabel == nil) {
         _timeLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _timeLabel.textColor = [UIColor lightGrayColor];
@@ -261,7 +242,6 @@
         _timeLabel.hidden = YES;
         [mainView addSubview:_timeLabel];
     }
-
 
     if (_likeCmtButton == nil) {
         _likeCmtButton = [[UIButton alloc] initWithFrame:CGRectZero];
@@ -277,7 +257,6 @@
         _likeCommentView = [[LikeCommentView alloc] initWithFrame:CGRectMake(x, y, width, height)];
         [mainView addSubview:_likeCommentView];
     }
-
 
     [self setFrameOfElements];
 }
@@ -315,7 +294,6 @@
 
     [_gridImageView updateWithImages:moment.arrImage oneImageWidth:120 oneImageHeight:120];
 
-
     [self updateBodyView:(textSize.height+gridHeight+TextImageSpace)];
 }
 
@@ -331,9 +309,7 @@
     [self updateLocationLikeComment:height];
 }
 
--(void) updateLocationLikeComment:(CGFloat)height
-{
-
+-(void) updateLocationLikeComment:(CGFloat)height {
     CGFloat x, y, width, sumHeight=0.0;
 
     x = _bodyView.frame.origin.x;
@@ -363,15 +339,12 @@
     _timeLabel.frame = CGRectMake(x, y, width, height);
     _timeLabel.text = moment.time;
 
-
     //点赞评论按钮
     width = 25;
     height = 25;
     x = CGRectGetMaxX(_bodyView.frame) - width;
     _likeCmtButton.hidden = NO;
     _likeCmtButton.frame = CGRectMake(x+2, y-7, width, height);
-
-
 
     if (moment.likes.count ==0 && moment.comments.count == 0) {
 
@@ -386,19 +359,15 @@
         _likeCommentView.frame = CGRectMake(x, y, width, height);
         [_likeCommentView updateWithItem:moment];
     }
-
 }
 
--(MLExpression *)sharedMLExpression
-{
+-(MLExpression *)sharedMLExpression {
     MLExpression * expression = [MLExpression expressionWithRegex:@"\\[[a-zA-Z0-9\\u4e00-\\u9fa5]+\\]" plistName:@"Expression" bundleName:@"ClippedExpression"];
 
     return expression;
 }
 
-
--(CGFloat)getHeight:(Moments *)item
-{
+-(CGFloat)getHeight:(Moments *)item {
     //basic
     CGFloat height = Margin + UserAvatarSize;
 
@@ -432,7 +401,6 @@
     }else{
         [self customViewContent:@"保存失败"];
     }
-
 }
 
 - (void)customViewContent:(NSString *)message  {
@@ -447,7 +415,7 @@
     hud.square = YES;
     // Optional label text.
     hud.label.text = message;
-    [hud hideAnimated:YES afterDelay:1.f];
+    [hud hideAnimated:YES afterDelay:1.5f];
 }
 
 
@@ -463,10 +431,8 @@
 }
 
 
--(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
-
         NSArray *activityItems = @[localImageView.image];
 
         UIActivityViewController *activityController =
@@ -484,10 +450,20 @@
 
 //Move to a special class
 -(void) saveMoments {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:false];
+    hud.mode = MBProgressHUDModeIndeterminate;
+    hud.label.text = @"保存中...";
     Moments *mom = AppUtils.getMom;
     mom.product = localImageView.image;
-    [AppUtils saveIntoPresistentLayer:mom];
-    [FFToast showToastWithTitle:@"提示" message:@"作品已经保存成功，请勿成功保存." iconImage:[UIImage imageNamed:@"fftoast_success_highlight.png"] duration:4000 toastType:FFToastTypeDefault];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        [AppUtils saveIntoPresistentLayer:mom];
+        dispatch_async(dispatch_get_main_queue(), ^{
+        [hud hideAnimated:YES];
+        [FFToast showToastWithTitle:@"提示" message:@"作品已经保存成功，请勿成功保存." iconImage:[UIImage imageNamed:@"fftoast_success_highlight.png"] duration:3 toastType:FFToastTypeDefault];
+        });
+    });
+    
+//    [hud hideAnimated:YES];
 }
 
 -(void) saveImage {
@@ -499,8 +475,6 @@
 -(void)creatSuspendBtn{
     _button = [APRoundedButton buttonWithType:UIButtonTypeCustom];
 
-  //  CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-  //  CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     _button.frame = CGRectMake(0,0, 180, 45);
     [_button addTarget:self action:@selector(suspendBtnClick) forControlEvents:UIControlEventTouchUpInside];
 
@@ -515,14 +489,10 @@
     [_button addTarget:self action:@selector(suspendBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_button];
     [self.view bringSubviewToFront:_button];
-
-
-
 }
 
 -(void) suspendBtnClick {
     if (!isSaved) {
-        //TODO pop up alter to save image
         UIAlertController *alertController = [UIAlertController
                                               alertControllerWithTitle:@"提醒"
                                               message:@"图片还没有保存，放弃保存开始制作新的一张吗？"

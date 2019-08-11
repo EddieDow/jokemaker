@@ -8,6 +8,7 @@
 
 #import "Moments.h"
 #import "APRoundedButton.h"
+#import "jokermaker-Swift.h"
 
 @interface ResultViewController : UIViewController<UIActionSheetDelegate> {
     int screenHeight;
