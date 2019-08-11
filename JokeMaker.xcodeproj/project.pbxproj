@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C449FD31230037DA003B7A1D /* FCFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C449FD30230037DA003B7A1D /* FCFileManager.m */; };
 		C49A9C2022FE8FCA00279A31 /* RecordsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A9C1F22FE8FCA00279A31 /* RecordsViewController.swift */; };
 		C49A9C2422FF0C4300279A31 /* FileSave.m in Sources */ = {isa = PBXBuildFile; fileRef = C49A9C2222FF0C4300279A31 /* FileSave.m */; };
 		C49A9C4F22FF136F00279A31 /* NSString+FFToast.m in Sources */ = {isa = PBXBuildFile; fileRef = C49A9C2722FF136F00279A31 /* NSString+FFToast.m */; };
@@ -219,6 +220,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C449FD2F230037DA003B7A1D /* FCFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCFileManager.h; sourceTree = "<group>"; };
+		C449FD30230037DA003B7A1D /* FCFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCFileManager.m; sourceTree = "<group>"; };
 		C49A9C1E22FE8FC900279A31 /* jokermaker-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "jokermaker-Bridging-Header.h"; sourceTree = "<group>"; };
 		C49A9C1F22FE8FCA00279A31 /* RecordsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsViewController.swift; sourceTree = "<group>"; };
 		C49A9C2222FF0C4300279A31 /* FileSave.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileSave.m; sourceTree = "<group>"; };
@@ -568,6 +571,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C449FD2E230037DA003B7A1D /* FCFileManager */ = {
+			isa = PBXGroup;
+			children = (
+				C449FD2F230037DA003B7A1D /* FCFileManager.h */,
+				C449FD30230037DA003B7A1D /* FCFileManager.m */,
+			);
+			path = FCFileManager;
+			sourceTree = "<group>";
+		};
 		C49A9C2122FF0C4300279A31 /* FileSave */ = {
 			isa = PBXGroup;
 			children = (
@@ -791,6 +803,7 @@
 		C4C62D3C1DDD1FC40084C42D /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				C449FD2E230037DA003B7A1D /* FCFileManager */,
 				C49A9C6F22FF15F100279A31 /* Snapkit */,
 				C49A9C2522FF136F00279A31 /* FFToast */,
 				C49A9C2122FF0C4300279A31 /* FileSave */,
@@ -1535,6 +1548,7 @@
 				C4C62E431DDD1FC40084C42D /* FirstStepViewController.m in Sources */,
 				C4C62EB21DDD1FC50084C42D /* UIButton+AFNetworking.m in Sources */,
 				C4C62E9C1DDD1FC50084C42D /* UIApplication+JTSImageViewController.m in Sources */,
+				C449FD31230037DA003B7A1D /* FCFileManager.m in Sources */,
 				C4C62E551DDD1FC40084C42D /* AFNetworkReachabilityManager.m in Sources */,
 				C4C62E5A1DDD1FC50084C42D /* AFURLSessionManager.m in Sources */,
 				C4C62E761DDD1FC50084C42D /* DNImageFlowViewController.m in Sources */,

@@ -49,7 +49,7 @@ import UIKit
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductHistoryCell", for: indexPath) as! ProductHistoryCell
         let key = indexs[indexPath.row] as? String ?? ""
         let defaults = UserDefaults.standard
-        let dic = defaults.object(forKey: key) as! NSDictionary
+        let dic = defaults.object(forKey: key) as? NSDictionary ?? NSDictionary()
         cell.titleLab.text = dic["userName"] as? String ?? ""
         cell.despLab.text = dic["content"] as? String ?? ""
         cell.timeLab.text = dic["created_time"] as? String ?? ""
@@ -62,13 +62,13 @@ import UIKit
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let alertController = UIAlertController(title: "", message: "警告!!! 删除数据将不可恢复!", preferredStyle: .actionSheet)
-        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
-        let deleteAction = UIAlertAction(title: "删除", style: .destructive, handler: { action in
-            
+        let alertController = UIAlertController(title: "", message: "警告!!! 删除数据将不可恢复!", preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        let deleteAction = UIAlertAction(title: "删除", style: .destructive, handler: { action in
+            self.deleteProduct(index: indexPath.row)
         })
         
-        let editAction = UIAlertAction(title: "编辑", style: .default, handler: { action in
+        let editAction = UIAlertAction(title: "编辑", style: .default, handler: { action in
             self.editProduct(index: indexPath.row)
         })
         
@@ -80,7 +80,10 @@ import UIKit
     }
     
     func deleteProduct(index: Int) {
-        //
+        let contentKey = indexs.object(at: index) as? String ?? ""
+        AppUtils.deleteCachedProduct(contentKey)
+        setupHistoryData()
+        self.tableView?.reloadData()
     }
     
     func editProduct(index: Int) {

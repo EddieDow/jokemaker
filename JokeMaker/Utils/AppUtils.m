@@ -9,6 +9,7 @@
 #import "AppUtils.h"
 #import "AppConstants.h"
 #import "FileSave.h"
+#import "FCFileManager.h"
 
 static Moments *moment = nil;
 
@@ -44,8 +45,6 @@ static Moments *moment = nil;
     [dic setValue:productImageName forKey:@"product"];
     [FileSave saveDataToDocumentsDirectory:UIImagePNGRepresentation(saveMoment.product) withName:productImageName andSubDirectory: kMomentCachedImagePath];
 
-    //TODO: save avatar image
-    
     [dic setValue:saveMoment.userName forKey:@"userName"];
     [dic setValue:saveMoment.content forKey:@"content"];
     [dic setValue:saveMoment.location forKey:@"location"];
@@ -65,7 +64,7 @@ static Moments *moment = nil;
     
     NSMutableArray *images = [[NSMutableArray alloc] init];
     for (int i = 0; i < moment.arrImage.count; i++) {
-        NSString *imageName = [[NSString alloc] initWithFormat:@"%@_%davatar.png", contentKey,i];
+        NSString *imageName = [[NSString alloc] initWithFormat:@"%@_%d_content.png", contentKey,i];
         [images addObject:imageName];
         [FileSave saveDataToDocumentsDirectory:UIImagePNGRepresentation(saveMoment.arrImage[i]) withName:imageName andSubDirectory: kMomentCachedImagePath];
     }
@@ -182,7 +181,6 @@ static Moments *moment = nil;
 }
 
 +(NSString*)getCurrentTimes {
-    
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
     NSDate *datenow = [NSDate date];
@@ -194,8 +192,46 @@ static Moments *moment = nil;
 +(UIImage *) readCachedImage:(NSString *)path {
     NSString *picPath=[NSString stringWithFormat:@"%@/Documents/%@/%@",NSHomeDirectory(),kMomentCachedImagePath,path];
     
-    UIImage *img=[[UIImage alloc]initWithContentsOfFile:picPath];
+    UIImage *img=[[UIImage alloc] initWithContentsOfFile:picPath];
     return img;
+}
+
+
++(void) deletedImage:(NSString *)path {
+    NSString *picPath=[NSString stringWithFormat:@"%@/Documents/%@/%@",NSHomeDirectory(),kMomentCachedImagePath,path];
+    
+    [FCFileManager removeItemAtPath: picPath];
+}
+
++(void) deleteCachedProduct: (NSString *)contentKey {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    //Avatar key
+    NSString *avatarImageName = [[NSString alloc] initWithFormat:@"%@_avatar.png", contentKey];
+    [self deletedImage:avatarImageName];
+    
+    NSString *productImageName = [[NSString alloc] initWithFormat:@"%@_product.png", contentKey];
+    [self deletedImage:productImageName];
+    
+    NSDictionary *dic = [defaults objectForKey: contentKey];
+    NSArray * arrImage = [dic objectForKey: @"arrImage"];
+    for (int i = 0; i < arrImage.count; i++) {
+        NSString *imageName = [[NSString alloc] initWithFormat:@"%@_%d_content.png", contentKey,i];
+        [self deletedImage:imageName];
+    }
+    
+    //Set cached index
+    NSArray *indexs = [defaults objectForKey: kMomentIndex];
+    NSMutableArray *mutableCopyArray = [indexs mutableCopy];
+    for (NSString *key in mutableCopyArray) {
+        if ([key isEqualToString: contentKey]) {
+            [mutableCopyArray removeObject:key];
+            break;
+        }
+    }
+    
+    [defaults setObject:mutableCopyArray forKey:kMomentIndex];
+    [defaults removeObjectForKey:contentKey];
+    [defaults synchronize];
 }
 
 @end

@@ -37,6 +37,8 @@
 
 +(void) saveIntoPresistentLayer: (Moments *)moment;
 
++(void) deleteCachedProduct: (NSString *)productId;
+
 +(UIImage *)readCachedImage:(NSString *)path;
 
 @end
