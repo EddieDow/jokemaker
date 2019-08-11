@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		C449FD31230037DA003B7A1D /* FCFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C449FD30230037DA003B7A1D /* FCFileManager.m */; };
+		C449FD9223006052003B7A1D /* LYEmptyBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = C449FD8923006052003B7A1D /* LYEmptyBaseView.m */; };
+		C449FD9323006052003B7A1D /* UIView+Empty.m in Sources */ = {isa = PBXBuildFile; fileRef = C449FD8B23006052003B7A1D /* UIView+Empty.m */; };
+		C449FD9423006052003B7A1D /* UIView+LYExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = C449FD8C23006052003B7A1D /* UIView+LYExtension.m */; };
+		C449FD9523006052003B7A1D /* LYEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = C449FD8F23006052003B7A1D /* LYEmptyView.m */; };
 		C49A9C2022FE8FCA00279A31 /* RecordsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A9C1F22FE8FCA00279A31 /* RecordsViewController.swift */; };
 		C49A9C2422FF0C4300279A31 /* FileSave.m in Sources */ = {isa = PBXBuildFile; fileRef = C49A9C2222FF0C4300279A31 /* FileSave.m */; };
 		C49A9C4F22FF136F00279A31 /* NSString+FFToast.m in Sources */ = {isa = PBXBuildFile; fileRef = C49A9C2722FF136F00279A31 /* NSString+FFToast.m */; };
@@ -222,6 +226,15 @@
 /* Begin PBXFileReference section */
 		C449FD2F230037DA003B7A1D /* FCFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCFileManager.h; sourceTree = "<group>"; };
 		C449FD30230037DA003B7A1D /* FCFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCFileManager.m; sourceTree = "<group>"; };
+		C449FD8923006052003B7A1D /* LYEmptyBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYEmptyBaseView.m; sourceTree = "<group>"; };
+		C449FD8A23006052003B7A1D /* LYEmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYEmptyView.h; sourceTree = "<group>"; };
+		C449FD8B23006052003B7A1D /* UIView+Empty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Empty.m"; sourceTree = "<group>"; };
+		C449FD8C23006052003B7A1D /* UIView+LYExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LYExtension.m"; sourceTree = "<group>"; };
+		C449FD8D23006052003B7A1D /* LYEmptyBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYEmptyBaseView.h; sourceTree = "<group>"; };
+		C449FD8E23006052003B7A1D /* LYEmptyViewHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYEmptyViewHeader.h; sourceTree = "<group>"; };
+		C449FD8F23006052003B7A1D /* LYEmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYEmptyView.m; sourceTree = "<group>"; };
+		C449FD9023006052003B7A1D /* UIView+LYExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LYExtension.h"; sourceTree = "<group>"; };
+		C449FD9123006052003B7A1D /* UIView+Empty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Empty.h"; sourceTree = "<group>"; };
 		C49A9C1E22FE8FC900279A31 /* jokermaker-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "jokermaker-Bridging-Header.h"; sourceTree = "<group>"; };
 		C49A9C1F22FE8FCA00279A31 /* RecordsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsViewController.swift; sourceTree = "<group>"; };
 		C49A9C2222FF0C4300279A31 /* FileSave.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileSave.m; sourceTree = "<group>"; };
@@ -580,6 +593,22 @@
 			path = FCFileManager;
 			sourceTree = "<group>";
 		};
+		C449FD8823006052003B7A1D /* LYEmptyView */ = {
+			isa = PBXGroup;
+			children = (
+				C449FD8923006052003B7A1D /* LYEmptyBaseView.m */,
+				C449FD8A23006052003B7A1D /* LYEmptyView.h */,
+				C449FD8B23006052003B7A1D /* UIView+Empty.m */,
+				C449FD8C23006052003B7A1D /* UIView+LYExtension.m */,
+				C449FD8D23006052003B7A1D /* LYEmptyBaseView.h */,
+				C449FD8E23006052003B7A1D /* LYEmptyViewHeader.h */,
+				C449FD8F23006052003B7A1D /* LYEmptyView.m */,
+				C449FD9023006052003B7A1D /* UIView+LYExtension.h */,
+				C449FD9123006052003B7A1D /* UIView+Empty.h */,
+			);
+			path = LYEmptyView;
+			sourceTree = "<group>";
+		};
 		C49A9C2122FF0C4300279A31 /* FileSave */ = {
 			isa = PBXGroup;
 			children = (
@@ -803,6 +832,7 @@
 		C4C62D3C1DDD1FC40084C42D /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				C449FD8823006052003B7A1D /* LYEmptyView */,
 				C449FD2E230037DA003B7A1D /* FCFileManager */,
 				C49A9C6F22FF15F100279A31 /* Snapkit */,
 				C49A9C2522FF136F00279A31 /* FFToast */,
@@ -1487,6 +1517,7 @@
 				C49A9CB222FF15F100279A31 /* Constraint.swift in Sources */,
 				C4C62E891DDD1FC50084C42D /* IQNSArray+Sort.m in Sources */,
 				C4C62E8A1DDD1FC50084C42D /* IQUIScrollView+Additions.m in Sources */,
+				C449FD9323006052003B7A1D /* UIView+Empty.m in Sources */,
 				C4C62E921DDD1FC50084C42D /* IQBarButtonItem.m in Sources */,
 				C49A9CB422FF15F100279A31 /* ConstraintRelatableTarget.swift in Sources */,
 				C49A9CB722FF15F100279A31 /* ConstraintLayoutGuide+Extensions.swift in Sources */,
@@ -1515,6 +1546,7 @@
 				C4C62E8D1DDD1FC50084C42D /* IQUIViewController+Additions.m in Sources */,
 				C4C62EAD1DDD1FC50084C42D /* README.md in Sources */,
 				C49A9CBA22FF15F100279A31 /* ConstraintMakerRelatable.swift in Sources */,
+				C449FD9523006052003B7A1D /* LYEmptyView.m in Sources */,
 				C4C62E911DDD1FC50084C42D /* IQTextView.m in Sources */,
 				C4C62E7B1DDD1FC50084C42D /* UIColor+Hex.m in Sources */,
 				C4C62EC31DDD1FC50084C42D /* VerticalTableViewCell.m in Sources */,
@@ -1538,6 +1570,7 @@
 				C49A9CA322FF15F100279A31 /* ConstraintDirectionalInsetTarget.swift in Sources */,
 				C4C62EAA1DDD1FC50084C42D /* NSString+MLExpression.m in Sources */,
 				C4C62EB01DDD1FC50084C42D /* UIActivityIndicatorView+AFNetworking.m in Sources */,
+				C449FD9223006052003B7A1D /* LYEmptyBaseView.m in Sources */,
 				C49A9CB822FF15F100279A31 /* ConstraintDirectionalInsets.swift in Sources */,
 				C4C62E9F1DDD1FC50084C42D /* UIViewController+LPScrollFullScreenExtension.m in Sources */,
 				C4C62E541DDD1FC40084C42D /* AFHTTPSessionManager.m in Sources */,
@@ -1567,6 +1600,7 @@
 				C49A9CA122FF15F100279A31 /* ConstraintPriority.swift in Sources */,
 				C4C62EA91DDD1FC50084C42D /* NSMutableAttributedString+MLLabel.m in Sources */,
 				C4C62EBA1DDD1FC50084C42D /* CommentTableViewCell.m in Sources */,
+				C449FD9423006052003B7A1D /* UIView+LYExtension.m in Sources */,
 				C4C62E571DDD1FC50084C42D /* AFURLConnectionOperation.m in Sources */,
 				C4C62E621DDD1FC50084C42D /* UIColor+BButton.m in Sources */,
 				C4C62E801DDD1FC50084C42D /* DNAssetsViewCell.m in Sources */,

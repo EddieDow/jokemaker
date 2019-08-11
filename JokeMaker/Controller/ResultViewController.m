@@ -121,7 +121,7 @@
     [self setContent];
 
     [self performSelector:@selector(takeScreenshot) withObject:nil afterDelay:0.5];
-    [self performSelector:@selector(creatSuspendBtn) withObject:nil afterDelay:1.5];
+    [self performSelector:@selector(creatSuspendBtn) withObject:nil afterDelay:1.2];
 }
 
 - (void)someBigImage:(UIImageView *)imageView {
@@ -462,8 +462,6 @@
         [FFToast showToastWithTitle:@"提示" message:@"作品已经保存成功，请勿成功保存." iconImage:[UIImage imageNamed:@"fftoast_success_highlight.png"] duration:3 toastType:FFToastTypeDefault];
         });
     });
-    
-//    [hud hideAnimated:YES];
 }
 
 -(void) saveImage {

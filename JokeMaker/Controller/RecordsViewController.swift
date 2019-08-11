@@ -31,6 +31,8 @@ import UIKit
         tableView?.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView?.register(ProductHistoryCell.self, forCellReuseIdentifier: "ProductHistoryCell")
         view.addSubview(tableView!)
+        tableView?.separatorStyle = .none
+        tableView?.ly_emptyView = LYEmptyView.empty(with: UIImage.init(named: "nodata.png"), titleStr: "暂还未保存任何作品.", detailStr: "")
         tableView?.estimatedRowHeight = 44.0
         tableView?.rowHeight = UITableView.automaticDimension
         
