@@ -80,10 +80,19 @@ import UIKit
     }
     
     func deleteProduct(index: Int) {
-        let contentKey = indexs.object(at: index) as? String ?? ""
-        AppUtils.deleteCachedProduct(contentKey)
-        setupHistoryData()
-        self.tableView?.reloadData()
+        let hud = MBProgressHUD.showAdded(to: self.view, animated: false)
+        hud.mode = .indeterminate
+        hud.label.text = "删除中..."
+        DispatchQueue.global().async {
+            let contentKey = self.indexs.object(at: index) as? String ?? ""
+            AppUtils.deleteCachedProduct(contentKey)
+            self.setupHistoryData()
+            DispatchQueue.main.async {
+                hud.hide(animated: true)
+                self.tableView?.reloadData()
+                FFToast.show(withTitle: "提示", message: "本地缓存数据已经删除.", iconImage: UIImage.init(named: "fftoast_success_highlight.png"), duration: 2, toastType: .default)
+            }
+        }
     }
     
     func editProduct(index: Int) {
