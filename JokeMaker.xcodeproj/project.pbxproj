@@ -1313,6 +1313,7 @@
 		C4C62E261DDD1FC40084C42D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C49A9CBB22FF19B300279A31 /* ProductHistoryCell.swift */,
 				C4C62E271DDD1FC40084C42D /* AddTableViewCell.h */,
 				C4C62E281DDD1FC40084C42D /* AddTableViewCell.m */,
 				C4C62E291DDD1FC40084C42D /* AddTableViewCell.xib */,
@@ -1337,7 +1338,6 @@
 				C4C62E3C1DDD1FC40084C42D /* VerticalTableViewCell.h */,
 				C4C62E3D1DDD1FC40084C42D /* VerticalTableViewCell.m */,
 				C4C62E3E1DDD1FC40084C42D /* VerticalTableViewCell.xib */,
-				C49A9CBB22FF19B300279A31 /* ProductHistoryCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

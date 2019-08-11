@@ -14,6 +14,7 @@
 @interface Moments : NSObject
 
 @property (nonatomic, strong) UIImage *avatar;
+@property (nonatomic, strong) UIImage *product;
 @property (nonatomic, strong) NSString *userName;
 @property (nonatomic, strong) NSString *content;
 @property (nonatomic, strong) NSString *location;

@@ -37,4 +37,6 @@
 
 +(void) saveIntoPresistentLayer: (Moments *)moment;
 
++(UIImage *)readCachedImage:(NSString *)path;
+
 @end

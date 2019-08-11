@@ -28,10 +28,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    moment = [[Moments alloc] init];
-
-    moment.avatar = [UIImage imageNamed:@"Avatar.png"];
-    [AppUtils setMoment:moment];
+    
+    moment = [AppUtils getMom];
+    if (moment == nil) {
+        moment = [[Moments alloc] init];
+        
+        moment.avatar = [UIImage imageNamed:@"Avatar.png"];
+        [AppUtils setMoment:moment];
+    }
+    
     UIButton *morebutton = [UIButton buttonWithType:UIButtonTypeCustom];
     morebutton.frame = CGRectMake(0, 5,28, 28);
     [morebutton setBackgroundImage:[UIImage imageNamed:@"next.png"] forState:UIControlStateNormal];
@@ -94,31 +99,25 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section ==0 ) {
-        NSString *title = [self getTitleSection:indexPath.section row:indexPath.row];
-        NSString *result = [self getResultSection:indexPath.section row:indexPath.row];
-        if (indexPath.row > 0 && indexPath.row < 4) {
-            SimpleEditViewCell *cell = (SimpleEditViewCell *)[tableView dequeueReusableCellWithIdentifier:@"SipleEditCell"];
-            cell.nameLabel.text = title;
-            cell.resultLabel.text = result;
-            if([result isEqualToString:@"点击编辑"]) {
-                cell.resultLabel.textColor = [UIColor grayColor];
-            } else {
-                cell.resultLabel.textColor = [UIColor blackColor];
-            }
-            
-            return cell;
-        } else if ( indexPath.row == 0) {
-            VerticalTableViewCell *cell = (VerticalTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"VerticalTableCell"];
-            cell.nameLabel.text = title;
-            cell.avatar.image = moment.avatar;
-            return cell;
+    NSString *title = [self getTitleSection:indexPath.section row:indexPath.row];
+    NSString *result = [self getResultSection:indexPath.section row:indexPath.row];
+    if (indexPath.row > 0 && indexPath.row < 4) {
+        SimpleEditViewCell *cell = (SimpleEditViewCell *)[tableView dequeueReusableCellWithIdentifier:@"SipleEditCell"];
+        cell.nameLabel.text = title;
+        cell.resultLabel.text = result;
+        if([result isEqualToString:@"点击编辑"]) {
+            cell.resultLabel.textColor = [UIColor grayColor];
+        } else {
+            cell.resultLabel.textColor = [UIColor blackColor];
         }
-
+        
+        return cell;
+    } else if ( indexPath.row == 0) {
+        VerticalTableViewCell *cell = (VerticalTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"VerticalTableCell"];
+        cell.nameLabel.text = title;
+        cell.avatar.image = moment.avatar;
+        return cell;
     }
-//    static NSString *CellIdentifier = @"newFriendCell";
-//    UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-//    cell.textLabel.text = @"等会更新";
     return nil;
 }
 
@@ -145,28 +144,26 @@
 
 -(NSString *) getResultSection:(NSInteger) section row:(NSInteger) row {
     NSString *result = @"点击编辑";
-    if (section ==0) {
-        if(row > 0) {
-            if(row==1) {
-                if(![AppUtils isEmpty:moment.userName]) {
-                    result = moment.userName;
-                }
-            } else if(row==2) {
-                if(![AppUtils isEmpty:moment.time]) {
-                    result = moment.time;
-                }
-
-            } else if(row==3) {
-                if(![AppUtils isEmpty:moment.location]) {
-                    result = moment.location;
-                }
-
-            } else if(row==4) {
-                if(![AppUtils isEmpty:moment.content]) {
-                    result = moment.content;
-                }
-
+    if(row > 0) {
+        if(row==1) {
+            if(![AppUtils isEmpty:moment.userName]) {
+                result = moment.userName;
             }
+        } else if(row==2) {
+            if(![AppUtils isEmpty:moment.time]) {
+                result = moment.time;
+            }
+            
+        } else if(row==3) {
+            if(![AppUtils isEmpty:moment.location]) {
+                result = moment.location;
+            }
+            
+        } else if(row==4) {
+            if(![AppUtils isEmpty:moment.content]) {
+                result = moment.content;
+            }
+            
         }
     }
     

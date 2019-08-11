@@ -25,7 +25,6 @@ import UIKit
     }
     
     func setupTableView() {
-        
         tableView = UITableView(frame: view.bounds, style: .plain)
         tableView?.delegate = self;
         tableView?.dataSource = self;
@@ -51,14 +50,56 @@ import UIKit
         let key = indexs[indexPath.row] as? String ?? ""
         let defaults = UserDefaults.standard
         let dic = defaults.object(forKey: key) as! NSDictionary
-        cell.titleLab?.text = dic["userName"] as? String ?? ""
-        cell.despLab?.text = dic["content"] as? String ?? ""
+        cell.titleLab.text = dic["userName"] as? String ?? ""
+        cell.despLab.text = dic["content"] as? String ?? ""
+        cell.timeLab.text = dic["created_time"] as? String ?? ""
+        
+        let productPath = dic["product"] as? String ?? ""
+        let img = AppUtils.readCachedImage(productPath)
+        cell.imgView.image = img
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        print("第\(indexPath.row)行被点击了")
+        //Read cached data as Object Moments
+        let defaults = UserDefaults.standard
+        let contentKey = indexs.object(at: indexPath.row) as? String ?? ""
+        let dic = defaults.object(forKey: contentKey) as? NSDictionary ?? NSDictionary()
+        let moment = Moments.init()
+        moment.userName = dic.value(forKey: "userName") as? String ?? ""
+        moment.content = dic.value(forKey: "content") as? String ?? ""
+        moment.location = dic.value(forKey: "location") as? String ?? ""
+        moment.time = dic.value(forKey: "time") as? String ?? ""
+        let likes = dic.value(forKey: "likes") as? NSArray ?? NSArray()
+        moment.likes = likes.mutableCopy() as? NSMutableArray
+        
+        let avatarImageName = String.init(format: "%@_avatar.png", contentKey)
+        moment.avatar = AppUtils.readCachedImage(avatarImageName)
+        
+        let keyImages = dic.value(forKey: "arrImage") as? NSArray ?? NSArray()
+        let images = NSMutableArray.init()
+        for key in keyImages {
+            let image = AppUtils.readCachedImage(key as! String)
+            images.add(image)
+        }
+        moment.arrImage = images
+        
+        let comments = dic.value(forKey: "comments") as? NSArray ?? NSArray()
+        let mComents = NSMutableArray.init()
+        for comment in comments {
+            let commentItem = CommentItem.init()
+            let dicComment = comment as! NSDictionary
+            commentItem.userNick = dicComment.value(forKey: "userNick") as? String ?? ""
+            commentItem.replyUserNick = dicComment.value(forKey: "replyUserNick") as? String ?? ""
+            commentItem.comment = dicComment.value(forKey: "comment") as? String ?? ""
+            mComents.add(commentItem)
+        }
+        moment.comments = mComents
+        AppUtils.setMoment(moment)
+        
+        let firstVC = FirstStepViewController.init(nibName: "FirstStepViewController", bundle: Bundle.main)
+        self.navigationController?.pushViewController(firstVC, animated: true)
     }
 
 }

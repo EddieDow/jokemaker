@@ -485,6 +485,7 @@
 //Move to a special class
 -(void) saveMoments {
     Moments *mom = AppUtils.getMom;
+    mom.product = localImageView.image;
     [AppUtils saveIntoPresistentLayer:mom];
     [FFToast showToastWithTitle:@"提示" message:@"作品已经保存成功，请勿成功保存." iconImage:[UIImage imageNamed:@"fftoast_success_highlight.png"] duration:4000 toastType:FFToastTypeDefault];
 }

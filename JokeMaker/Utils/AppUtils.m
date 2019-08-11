@@ -39,6 +39,10 @@ static Moments *moment = nil;
     NSString *avatarImageName = [[NSString alloc] initWithFormat:@"%@_avatar.png", contentKey];
     [dic setValue:avatarImageName forKey:@"avatar"];
     [FileSave saveDataToDocumentsDirectory:UIImagePNGRepresentation(saveMoment.avatar) withName:avatarImageName andSubDirectory: kMomentCachedImagePath];
+    
+    NSString *productImageName = [[NSString alloc] initWithFormat:@"%@_product.png", contentKey];
+    [dic setValue:productImageName forKey:@"product"];
+    [FileSave saveDataToDocumentsDirectory:UIImagePNGRepresentation(saveMoment.product) withName:productImageName andSubDirectory: kMomentCachedImagePath];
 
     //TODO: save avatar image
     
@@ -47,19 +51,20 @@ static Moments *moment = nil;
     [dic setValue:saveMoment.location forKey:@"location"];
     [dic setValue:saveMoment.time forKey:@"time"];
     [dic setValue:saveMoment.likes forKey:@"likes"];
+    [dic setValue:[self getCurrentTimes] forKey:@"created_time"];
     
     NSMutableArray *comments = [[NSMutableArray alloc] init];
     for (CommentItem* comment in saveMoment.comments) {
-        NSDictionary *dicComment = [[NSDictionary alloc] init];
+        NSMutableDictionary *dicComment = [[NSMutableDictionary alloc] init];
         [dicComment setValue:comment.userNick forKey:@"userNick"];
         [dicComment setValue:comment.replyUserNick forKey:@"replyUserNick"];
         [dicComment setValue:comment.comment forKey:@"comment"];
         [comments addObject:dicComment];
     }
-    [dic setValue:comments forKey:@"comment"];
+    [dic setValue:comments forKey:@"comments"];
     
     NSMutableArray *images = [[NSMutableArray alloc] init];
-    for (int i = 0; i < images.count; i++) {
+    for (int i = 0; i < moment.arrImage.count; i++) {
         NSString *imageName = [[NSString alloc] initWithFormat:@"%@_%davatar.png", contentKey,i];
         [images addObject:imageName];
         [FileSave saveDataToDocumentsDirectory:UIImagePNGRepresentation(saveMoment.arrImage[i]) withName:imageName andSubDirectory: kMomentCachedImagePath];
@@ -174,6 +179,23 @@ static Moments *moment = nil;
 
     }
     return image;
+}
+
++(NSString*)getCurrentTimes {
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
+    NSDate *datenow = [NSDate date];
+    NSString *currentTimeString = [formatter stringFromDate:datenow];
+    //NSLog(@"currentTimeString =  %@",currentTimeString);
+    return currentTimeString;
+}
+
++(UIImage *) readCachedImage:(NSString *)path {
+    NSString *picPath=[NSString stringWithFormat:@"%@/Documents/%@/%@",NSHomeDirectory(),kMomentCachedImagePath,path];
+    
+    UIImage *img=[[UIImage alloc]initWithContentsOfFile:picPath];
+    return img;
 }
 
 @end
