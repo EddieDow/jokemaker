@@ -62,9 +62,31 @@ import UIKit
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let alertController = UIAlertController(title: "", message: "警告!!! 删除数据将不可恢复!", preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        let deleteAction = UIAlertAction(title: "删除", style: .destructive, handler: { action in
+            
+        })
+        
+        let editAction = UIAlertAction(title: "编辑", style: .default, handler: { action in
+            self.editProduct(index: indexPath.row)
+        })
+        
+        alertController.addAction(deleteAction)
+        alertController.addAction(editAction)
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func deleteProduct(index: Int) {
+        //
+    }
+    
+    func editProduct(index: Int) {
         //Read cached data as Object Moments
         let defaults = UserDefaults.standard
-        let contentKey = indexs.object(at: indexPath.row) as? String ?? ""
+        let contentKey = indexs.object(at: index) as? String ?? ""
         let dic = defaults.object(forKey: contentKey) as? NSDictionary ?? NSDictionary()
         let moment = Moments.init()
         moment.userName = dic.value(forKey: "userName") as? String ?? ""
@@ -80,7 +102,7 @@ import UIKit
         let keyImages = dic.value(forKey: "arrImage") as? NSArray ?? NSArray()
         let images = NSMutableArray.init()
         for key in keyImages {
-            let image = AppUtils.readCachedImage(key as! String)
+            let image = AppUtils.readCachedImage(key as? String)
             images.add(image)
         }
         moment.arrImage = images

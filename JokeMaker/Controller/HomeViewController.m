@@ -13,7 +13,7 @@
 #import "UIColor+Help.h"
 #import "AutoSlideScrollView.h"
 #import "jokermaker-Swift.h"
-
+#import "AppUtils.h"
 
 static const NSInteger kTotalPageCount = 2;
 
@@ -117,6 +117,7 @@ static const NSInteger kTotalPageCount = 2;
 -(void) startProduce {
 
     FirstStepViewController *vc = [[FirstStepViewController alloc] initWithNibName:@"FirstStepViewController" bundle:[NSBundle mainBundle]];
+    [AppUtils setMoment:nil];
     [self.navigationController pushViewController:vc animated:true];
 }
 
