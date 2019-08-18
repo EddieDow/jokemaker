@@ -37,7 +37,7 @@ static const NSInteger kTotalPageCount = 2;
     [titleButton setFrame:(CGRect){0,0,100,44}];
     [titleButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [titleButton setContentEdgeInsets:UIEdgeInsetsMake(-2, 0, 0, 0)];
-    [titleButton setTitle:@"段子手神器" forState:UIControlStateNormal];
+    [titleButton setTitle:@"段子手助手" forState:UIControlStateNormal];
     [titleButton.titleLabel setFont:[UIFont boldSystemFontOfSize:20]];
     [titleButton.titleLabel setShadowOffset:(CGSize){1,1}];
     [self.navigationItem setTitleView:titleButton];
