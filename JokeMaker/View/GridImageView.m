@@ -64,6 +64,7 @@
     _oneImageView.hidden = YES;
     _oneImageView.backgroundColor = [UIColor whiteColor];
     _oneImageView.contentMode = UIViewContentModeScaleAspectFill;
+    _oneImageView.clipsToBounds = true;
 
     [self addSubview:_oneImageView];
 
