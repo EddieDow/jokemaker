@@ -62,8 +62,8 @@
 
     _oneImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
     _oneImageView.hidden = YES;
-    _oneImageView.backgroundColor = [UIColor lightGrayColor];
-
+    _oneImageView.backgroundColor = [UIColor whiteColor];
+    _oneImageView.contentMode = UIViewContentModeScaleAspectFill;
 
     [self addSubview:_oneImageView];
 

@@ -17,7 +17,7 @@
 
         _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(frame), CGRectGetHeight(frame))];
         _imageView.contentMode = UIViewContentModeScaleAspectFill;
-        [_imageView setClipsToBounds:YES];
+        [_imageView setClipsToBounds:true];
         [self addSubview:_imageView];
 
     }

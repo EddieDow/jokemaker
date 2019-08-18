@@ -19,6 +19,12 @@ import UIKit
         setupTableView()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidLoad()
+        setupHistoryData()
+        self.tableView?.reloadData()
+    }
+    
     func setupHistoryData() {
         let defaults = UserDefaults.standard
         indexs = defaults.object(forKey: kMomentIndex) as? NSArray ?? NSMutableArray()
@@ -35,7 +41,6 @@ import UIKit
         tableView?.ly_emptyView = LYEmptyView.empty(with: UIImage.init(named: "nodata.png"), titleStr: "暂还未保存任何作品.", detailStr: "")
         tableView?.estimatedRowHeight = 44.0
         tableView?.rowHeight = UITableView.automaticDimension
-        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
