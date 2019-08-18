@@ -121,44 +121,6 @@
 }
 
 
-
--(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCellEditingStyle result = UITableViewCellEditingStyleNone;
-    if (indexPath.section == 1 && indexPath.row>0)  {
-        result = UITableViewCellEditingStyleDelete;
-    }
-    return result;
-}
-
--(void)setEditing:(BOOL)editing animated:(BOOL)animated{
-    [super setEditing:editing animated:animated];
-    [self.tableView setEditing:editing animated:animated];
-}
-
--(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (editingStyle ==UITableViewCellEditingStyleDelete) {
-        if (indexPath.section == 1 && indexPath.row>0) {
-            [[AppUtils getMom].comments removeObjectAtIndex:indexPath.row-1];
-
-            NSMutableArray *array = [AppUtils getMom].comments;
-            for (NSInteger i=0; i<[array count]; i++) {
-                CommentItem *item = [array objectAtIndex:i];
-                if (item.indexId != i) {
-                    item.indexId = i;
-                    [array replaceObjectAtIndex:[item indexId] withObject:item];
-                }
-
-            }
-
-            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
-        }
-
-    }
-}
-
-
-
-
 -(NSString *)getLikes {
     Moments *moment = [AppUtils getMom];
 
@@ -194,7 +156,6 @@
 
     CGRect bounds = textView.bounds;
 
-    // 计算 text view 的高度
     CGSize maxSize = CGSizeMake(bounds.size.width, CGFLOAT_MAX);
     CGSize newSize = [textView sizeThatFits:maxSize];
     bounds.size = newSize;
@@ -239,25 +200,65 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
     if (indexPath.section == 1) {
-        AddViewController *vc = [[AddViewController alloc] initWithNibName:@"AddViewController" bundle:[NSBundle mainBundle]];
-        vc.delegate = self;
-
         if (indexPath.row == 0) {
-
-
+            [self openEditView: 0];
         } else {
-            NSMutableArray *array = [AppUtils getMom].comments;
-            vc.item = [array objectAtIndex:indexPath.row-1];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"警告!!! 删除的内容无法恢复..." preferredStyle:UIAlertControllerStyleActionSheet];
+            
+            UIAlertAction *delete = [UIAlertAction actionWithTitle:@"删除" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+                [self deleteItem:indexPath];
+            }];
+            
+            UIAlertAction *conform = [UIAlertAction actionWithTitle:@"编辑" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                [self openEditView:indexPath.row];
+            }];
+            
+            UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                NSLog(@"点击了取消按钮");
+            }];
+            
+            [alert addAction:delete];
+            [alert addAction:conform];
+            [alert addAction:cancel];
+            
+            [self presentViewController:alert animated:YES completion:nil];
         }
-
-        [self.navigationController pushViewController:vc animated:true];
     }
+}
 
+-(void) deleteItem: (NSIndexPath *)indexPath {
+    [[AppUtils getMom].comments removeObjectAtIndex:indexPath.row-1];
     
+    NSMutableArray *array = [AppUtils getMom].comments;
+    for (NSInteger i=0; i<[array count]; i++) {
+        CommentItem *item = [array objectAtIndex:i];
+        if (item.indexId != i) {
+            item.indexId = i;
+            [array replaceObjectAtIndex:[item indexId] withObject:item];
+        }
+        
+    }
+    
+    [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+}
+
+-(void) openEditView:(NSInteger) index{
+    AddViewController *vc = [[AddViewController alloc] initWithNibName:@"AddViewController" bundle:[NSBundle mainBundle]];
+    vc.delegate = self;
+    
+    if (index == 0) {
+        
+    } else {
+        NSMutableArray *array = [AppUtils getMom].comments;
+        CommentItem *item = [array objectAtIndex:index-1];
+        item.indexId = index-1;
+        vc.item = item;
+    }
+    
+    [self.navigationController pushViewController:vc animated:true];
 }
 
 -(void) commentEditted:(CommentItem *) item {

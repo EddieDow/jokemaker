@@ -87,6 +87,7 @@
     if ([AppUtils isEmpty:self.item]) {
         self.item = [[CommentItem alloc] init];
     }
+    
     self.item.userNick = self.nickName.text;
     self.item.replyUserNick = self.replyNickName.text;
     self.item.comment = self.comment.text;
@@ -94,14 +95,5 @@
     [self.delegate commentEditted:self.item];
     [self.navigationController popViewControllerAnimated:true];
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
