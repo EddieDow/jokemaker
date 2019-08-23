@@ -28,6 +28,7 @@ import UIKit
     func setupHistoryData() {
         let defaults = UserDefaults.standard
         indexs = defaults.object(forKey: kMomentIndex) as? NSArray ?? NSMutableArray()
+        indexs = indexs.reverseObjectEnumerator().allObjects as? NSArray ?? NSMutableArray()
     }
     
     func setupTableView() {
